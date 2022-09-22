@@ -10,7 +10,7 @@ require_once("init.php");
 
 $sql = "SELECT character_code, name_category FROM categories";
 $res = mysqli_query($con, $sql);
-$categories = mysqli_fetch_all($res, MYSQLI_ASSOC);
+$categories = mysqli_fetch_assoc($res);
 
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 if ($id) {
@@ -19,9 +19,8 @@ if ($id) {
   http_response_code(404);
   die();
 }
-
 $result = mysqli_query($con, $sql);
-$lot = mysqli_fetch_all($result, MYSQLI_ASSOC);
+$lot = mysqli_fetch_assoc($result);
 if (!$lot) {
   http_response_code(404);
   die();
