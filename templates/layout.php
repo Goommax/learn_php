@@ -39,6 +39,9 @@
             </li>
           </ul>
         <?php endif; ?>
+    </div>
+  </nav>
+</header>
 <main class="container"><?= $content; ?></main>
 </div>
 <footer class="main-footer">
@@ -97,3 +100,5 @@
 <script src="script.js"></script>
 </body>
 </html>
+
+
