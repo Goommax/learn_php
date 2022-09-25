@@ -7,8 +7,9 @@ require_once("helpers.php");
 require_once("functions.php");
 require_once("data.php");
 require_once("init.php");
+require_once("db_queries.php");
 
-$sql = "SELECT character_code, name_category FROM categories";
+$sql = cat_query();
 $res = mysqli_query($con, $sql);
 if ($res) {
 $categories = mysqli_fetch_all($res, MYSQLI_ASSOC);
@@ -16,14 +17,16 @@ $categories = mysqli_fetch_all($res, MYSQLI_ASSOC);
 $error = mysqli_error($con);
 }
 
-$sql = "SELECT l.title, l.img, l.start_price, l.date_finish, c.name_category FROM lots l JOIN categories c ON l.category_id = c.id ORDER BY date_creation DESC";
+$sql = goods_list_query();
 $res = mysqli_query($con, $sql);
 if ($res) {
 $inform = mysqli_fetch_all($res, MYSQLI_ASSOC);
 } else {
 $error = mysqli_error($con);
 }
-
+/*var_dump($inform);
+die();
+*/
 $page_content = include_template("main.php", [
    'categories' => $categories,
    'inform' => $inform
