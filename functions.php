@@ -31,3 +31,36 @@ function time_left($lotdate)
 
     return $res;
 }
+
+/*Функция валидации числового значения в поле формы*/
+function val_number($num) {
+ if (!empty($num)) {
+   $num *= 1;
+   if (is_int($num) && $num > 0) {
+     return NULL;
+   }
+   return "Введенное число должно быть целым и больше нуля";
+ }
+};
+
+/*Функция валидации даты*/
+function val_date($date) {
+  if (is_date_valid($date)) {
+    $cur_date = date_create('now');
+    $d = date_create($date);
+    $dif = date_diff($d, $cur_date);
+    $days = date_interval_format($dif, '%d');
+    if ($days < 1) {
+      return "Дата должна быть больше текущей, минимум на 1 день";
+    }
+  } else {
+    return "Укажите дату в формате «ГГГГ-ММ-ДД»";
+  }
+  };
+
+/*Функция валидации категории*/
+function val_category($id, $allowed_list) {
+  if (!in_array($id, $allowed_list)) {
+    return "Выберите категорию из списка";
+  }
+};

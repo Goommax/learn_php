@@ -24,13 +24,12 @@ $inform = mysqli_fetch_all($res, MYSQLI_ASSOC);
 } else {
 $error = mysqli_error($con);
 }
-/*var_dump($inform);
-die();
-*/
+
 $page_content = include_template("main.php", [
    'categories' => $categories,
    'inform' => $inform
 ]);
+
 $layout_content = include_template("layout.php", [
    'content' => $page_content,
    'categories' => $categories,

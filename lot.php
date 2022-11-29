@@ -11,7 +11,7 @@ require_once("db_queries.php");
 
 $sql = cat_query();
 $res = mysqli_query($con, $sql);
-$categories = mysqli_fetch_assoc($res);
+$categories = mysqli_fetch_all($res, MYSQLI_ASSOC);
 
 $id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
 if ($id) {
@@ -31,6 +31,7 @@ $page_content = include_template("lot.php", [
    'categories' => $categories,
    'lot' => $lot
 ]);
+
 $layout_content = include_template("layout.php", [
    'content' => $page_content,
    'categories' => $categories,
